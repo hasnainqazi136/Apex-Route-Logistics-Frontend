@@ -28,7 +28,8 @@ export default function App() {
     setIsLoading(true);
     setError(null);
     try {
-      const apiBase = import.meta.env.VITE_API_BASE_URL || '';
+      const rawApiBase = import.meta.env.VITE_API_BASE_URL || 'https://backend-apex-route-logistics.vercel.app';
+      const apiBase = rawApiBase.replace(/\/+$/, '');
       const response = await fetch(`${apiBase}/api/plan-trip/`, {
         method: 'POST',
         headers: {

@@ -55,7 +55,8 @@ export default function TripForm({ onSubmit, isLoading }) {
       return;
     }
     try {
-      const apiBase = import.meta.env.VITE_API_BASE_URL || '';
+      const rawApiBase = import.meta.env.VITE_API_BASE_URL || 'https://backend-apex-route-logistics.vercel.app';
+      const apiBase = rawApiBase.replace(/\/+$/, '');
       const res = await fetch(`${apiBase}/api/geocode/?q=${encodeURIComponent(query)}`);
       if (res.ok) {
         const data = await res.json();
